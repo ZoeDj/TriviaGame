@@ -1,5 +1,11 @@
 $(".start").on('click', function(){ 
 
+  triviaOver = setTimeout(function() {
+    alert("You are out of time!");
+  }, 20000);
+
+
+
 var questions = [
   {question: "Who does Pam marry?",
   options: ["Roy","Jim","Stanley", "Andy"],
