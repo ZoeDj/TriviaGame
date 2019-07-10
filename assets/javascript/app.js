@@ -1,8 +1,5 @@
-
-
 $(".start").on('click', function(){ 
 
-  
 var questions = [
   {question: "Who does Pam marry?",
   options: ["Roy","Jim","Stanley", "Andy"],
@@ -38,8 +35,6 @@ var questions = [
   }
 ];
 
-  var questionCounter = 0;
-  var options =[];
  
   for (var i = 0; i < questions.length; i++) {
   questionDiv = $("<div>");
@@ -56,7 +51,6 @@ var questions = [
     var input = "";
   
   for (var j = 0; j < questions[i].options.length; j++) {
-    console.log(j)
     item =$("<li>");
 
     input= "<input type='radio' name='answer" + i +"'" + "value= " + j  + "/>";
@@ -64,57 +58,45 @@ var questions = [
     item.append(input);
     radioList.append(item);
   }
-  
+
   return radioList;
 }
 };
-$(".question").append("<br><button class='submit' onclick=checker()> submit </button>")
+$(".question").append("<br><button class='submit'> Submit </button>");
 
-function select(){
-  options[questionCounter] =+ $("input[name='answer']:checked").val();
-  questionCounter++;
-}
+//I've struggled to find a way to submit user answers.
+//If every questions got an answer, all answers would be pushed in array called choices.
+//Choices array would be compare with the right answers.
+//for every correct answer amountCorrect++;
 
 
+  var choices = [];
+  
+  $('input[name=answer0]').on('click', function(){ 
+    choices.push($('input[name=answer0]:checked').val());
+  });
+  $('input[name=answer1]').on('click', function(){ 
+    choices.push($('input[name=answer1]:checked').val());
+  });
+  $('input[name=answer2]').on('click', function(){ 
+    choices.push($('input[name=answer2]:checked').val());
+  });
+  $('input[name=answer3]').on('click', function(){ 
+    choices.push($('input[name=answer3]:checked').val());
+  });
+  $('input[name=answer4]').on('click', function(){ 
+    choices.push($('input[name=answer4]:checked').val());
+  });
+  $('input[name=answer5]').on('click', function(){ 
+    choices.push($('input[name=answer5]:checked').val());
+  });
+  $('input[name=answer6]').on('click', function(){ 
+    choices.push($('input[name=answer6]:checked').val());
+  });
+  $('input[name=answer7]').on('click', function(){ 
+    choices.push($('input[name=answer7]:checked').val());
+  })
+  var result = $("<div class=result></div>");
+    $(".result").text(choices);
 
-// $(".submit").on("click", function(){
-// alert(("input[name='answer']:checked").val());
-// });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  // $(".this-option").click(function(){
-  //     // alert(questions[i].correctAnswer); -how do I get a value of the corect answer?
-      
-  
-  // // $(this).attr("data-option") this works
-
-
-  // //    if ($(this).attr("data-option")=== questions[i].correctAnswer){
-  // //        if (userAnswer === correctAnswerIndex) {
-  // //         alert("yes!");
-  // //     }
-  // //     else {
-  // //         alert("no!");
-  // //    }
-  // //    }
-  // });
-
-
-
-
-  
-
-
-  
