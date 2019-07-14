@@ -59,7 +59,7 @@ start: function(){
    for (var i = 0; i < questions.length; i++) {
   questionDiv = $("<div>");
   questionDiv.text(questions[i].question);
-  questionDiv.addClass("trivia" + i);
+  questionDiv.addClass("question" + i);
   $(".trivia").append(questionDiv);
 
   var radioButtons = createRadios();
@@ -73,7 +73,7 @@ start: function(){
   for (var j = 0; j < questions[i].options.length; j++) {
     item =$("<li>");
 
-    input= "<input type='radio' name='answer" + i +"'" + "value= " + j  + "/>";
+    input= "<input type='radio' name='answer" + i +"'" + "value= '" + j  +"'" + "/>";
     input +=  questions[i].options[j];
     item.append(input);
     radioList.append(item);
