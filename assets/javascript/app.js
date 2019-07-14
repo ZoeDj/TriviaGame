@@ -1,11 +1,10 @@
 $(".start").on('click', function(){ 
-
-  triviaOver = setTimeout(function() {
-    alert("You are out of time!");
-  }, 20000);
-
-
-
+  $(".start").remove();
+game.start();
+});
+$(document).on("click", ".submit", function(){
+  game.done();
+})
 var questions = [
   {question: "Who does Pam marry?",
   options: ["Roy","Jim","Stanley", "Andy"],
@@ -41,12 +40,27 @@ var questions = [
   }
 ];
 
- 
-  for (var i = 0; i < questions.length; i++) {
+var game ={
+  correct: 0,
+  incorrect: 0,
+  counter: 90,
+  countdown: function(){
+    game.counter --;
+    $("#counter").html(game.counter);
+    if(game.counter <= 0){
+      console.log("Time is up!");
+      game.done();
+    } 
+  },
+start: function(){
+  timer = setInterval(game.countdown, 1000);
+  $(".trivia").prepend("<h2>Time Remaining: <span id='counter'>90</span> Seconds</h2>");
+  $(".start").remove();
+   for (var i = 0; i < questions.length; i++) {
   questionDiv = $("<div>");
   questionDiv.text(questions[i].question);
-  questionDiv.addClass("question" + i);
-  $(".question").append(questionDiv);
+  questionDiv.addClass("trivia" + i);
+  $(".trivia").append(questionDiv);
 
   var radioButtons = createRadios();
   questionDiv.append(radioButtons);
@@ -68,41 +82,78 @@ var questions = [
   return radioList;
 }
 };
-$(".question").append("<br><button class='submit'> Submit </button>");
-
-//I've struggled to find a way to submit user answers.
-//If every questions got an answer, all answers would be pushed in array called choices.
-//Choices array would be compare with the right answers.
-//for every correct answer amountCorrect++;
-
-
-  var choices = [];
+$(".trivia").append("<br><button class='submit'> Submit </button>");
+},
+done: function(){
+  $.each($('input[name="answer0"]:checked'), function(){
+    if($(this).val()==questions[0].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer1"]:checked'), function(){
+    if($(this).val()==questions[1].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer2"]:checked'), function(){
+    if($(this).val()==questions[2].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer3"]:checked'), function(){
+    if($(this).val()==questions[3].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer4"]:checked'), function(){
+    if($(this).val()==questions[4].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer5"]:checked'), function(){
+    if($(this).val()==questions[5].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer6"]:checked'), function(){
+    if($(this).val()==questions[6].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
+  $.each($('input[name="answer7"]:checked'), function(){
+    if($(this).val()==questions[7].correctAnswer){
+      game.correct++;
+    }else {
+      game.incorrect++;
+    }
+  });
   
-  $('input[name=answer0]').on('click', function(){ 
-    choices.push($('input[name=answer0]:checked').val());
-  });
-  $('input[name=answer1]').on('click', function(){ 
-    choices.push($('input[name=answer1]:checked').val());
-  });
-  $('input[name=answer2]').on('click', function(){ 
-    choices.push($('input[name=answer2]:checked').val());
-  });
-  $('input[name=answer3]').on('click', function(){ 
-    choices.push($('input[name=answer3]:checked').val());
-  });
-  $('input[name=answer4]').on('click', function(){ 
-    choices.push($('input[name=answer4]:checked').val());
-  });
-  $('input[name=answer5]').on('click', function(){ 
-    choices.push($('input[name=answer5]:checked').val());
-  });
-  $('input[name=answer6]').on('click', function(){ 
-    choices.push($('input[name=answer6]:checked').val());
-  });
-  $('input[name=answer7]').on('click', function(){ 
-    choices.push($('input[name=answer7]:checked').val());
-  })
-  var result = $("<div class=result></div>");
-    $(".result").text(choices);
+  this.result();
 
-});
+},
+result: function(){
+  clearInterval(timer);
+  $(".trivia h2").remove();
+
+  $(".trivia").html("<h2>Here are your results:</h2>");
+  $(".trivia").append("<h3>Correct Answers: " + this.correct + "</h3>");
+  $(".trivia").append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
+  $(".trivia").append("<h3>Unanswered: " + (questions.length-(this.incorrect+this.correct)) + "</h3>");
+}
+}
+
+

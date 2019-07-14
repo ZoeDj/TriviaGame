@@ -1,3 +1,36 @@
 li {
     list-style: none;
 }
+.start{
+    margin:auto;
+    display:block;
+    margin-top: 20%;
+    font-size: 32px;
+    background: black;
+    color: white;
+    padding:10px;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-right: solid #eae7e7c7 5px;
+    border-bottom: solid grey 5px;
+    border-radius: 10px;
+}
+.start:hover{
+    
+    font-size: 30px;
+}
+.trivia{
+    margin-top: 3%;
+    margin-left: 40%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+.submit{
+    margin-left:15%;
+    background: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10%;
+    border-radius: 5px;
+}
